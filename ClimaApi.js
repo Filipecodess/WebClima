@@ -51,4 +51,30 @@ async function prencherFormulario (evento) {
 }
 
 document.getElementById('weather-search')
-        .addEventListener('keydown', prencherFormulario)
+        .addEventListener('keydown', prencherFormulario);
+
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker
+            .register("./service-worker.js")
+            .then(() => {
+                console.log("Service Worker registrado com sucesso.");
+            })
+            .catch(error => {
+                console.error(
+                    "Erro ao registrar o Service Worker:",
+                    error
+                );
+            });
+    });
+}
+
+navigator.geolocation.getCurrentPosition(
+    function (position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+    }
+);
+
+
+
